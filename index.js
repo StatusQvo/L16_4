@@ -113,6 +113,7 @@ function checkNewTaskValid(newLessonVal) {
       errorSpan.innerHTML = ErrorText_Empty
     } else {
       const NewErrorSpan = createSpanElt(ErrorText_Empty)
+      NewErrorSpan.className = 'error-message-block'
       formBlock.insertAdjacentElement('beforeend', NewErrorSpan)
     }
   } else if (arrayTaskText.includes(newLessonVal)) {
@@ -120,6 +121,7 @@ function checkNewTaskValid(newLessonVal) {
       errorSpan.innerHTML = ErrorText_Exist
     } else {
       const NewErrorSpan = createSpanElt(ErrorText_Exist)
+      NewErrorSpan.className = 'error-message-block'
       formBlock.insertAdjacentElement('beforeend', NewErrorSpan)
     }
   } else {
@@ -131,9 +133,9 @@ function checkNewTaskValid(newLessonVal) {
 function submitEvent(event) {
   event.preventDefault()
   const { target } = event
-  const newLesson = target.taskName
-
-  checkNewTaskValid(newLesson.value)
+  const newLesson = target.taskName.value
+  console.log(newLesson.trim())
+  checkNewTaskValid(newLesson.trim())
 }
 
 const formBlock = document.querySelector('.create-task-block')
